@@ -174,8 +174,9 @@ int parse_input_and_spawn_objects(const string& input_file)
                 int max_quantity_available;
 
                 // Parse resource string
-                if (getline(resource_name_quantity_pair_stream, resource_name, ':') && resource_name_quantity_pair_stream >> max_quantity_available)
+                if (getline(resource_name_quantity_pair_stream, resource_name, ':'))
                 {
+                    resource_name_quantity_pair_stream >> max_quantity_available;
                     // Create + Add new Resource instance to global resource pool
                     Resource resource_type = Resource(resource_name, max_quantity_available);
                     global_resource_pool.insert(pair<string, Resource>(resource_name, resource_type));
@@ -207,8 +208,9 @@ int parse_input_and_spawn_objects(const string& input_file)
                 int quantity_needed;
 
                 // Parse resource string
-                if (getline(resource_name_quantity_pair_stream, resource_name, ':') && resource_name_quantity_pair_stream >> quantity_needed)
+                if (getline(resource_name_quantity_pair_stream, resource_name, ':') )
                 {
+                    resource_name_quantity_pair_stream >> quantity_needed;
                     // Add pair to resources needed map
                     resources_needed.insert(make_pair(resource_name, quantity_needed));
                 }
